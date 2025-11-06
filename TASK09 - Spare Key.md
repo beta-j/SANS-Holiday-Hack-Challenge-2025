@@ -7,6 +7,10 @@ Your mission: Someone left a spare key out in the open. Find WHERE it is.
 Connecting you now... ❄️
 ```
 
+Let's start by listing all resource groups
+$ az group list -o table
+This will show all resource groups in a readable table format.
+
 ```
 neighbor@904d9c9a0781:~$ az group list -o table
 Name                 Location    ProvisioningState
@@ -18,6 +22,9 @@ rg-hoa-security      eastus      Succeeded
 rg-hoa-landscaping   eastus      Succeeded
 ```
 
+Now let's find storage accounts in the neighborhood resource group 📦
+$ az storage account list --resource-group rg-the-neighborhood -o table
+This shows what storage accounts exist and their types.
 
 ```
 neighbor@904d9c9a0781:~$ az storage account list --resource-group rg-the-neighborhood -o table
@@ -29,6 +36,10 @@ hoaclubhouse     StorageV2    eastus      rg-hoa-clubhouse     Succeeded
 hoasecurity      BlobStorage  eastus      rg-hoa-security      Succeeded
 hoalandscaping   StorageV2    eastus      rg-hoa-landscaping   Succeeded
 ```
+
+Someone mentioned there was a website in here.
+maybe a static website?
+try:$ az storage blob service-properties show --account-name <insert_account_name> --auth-mode login
 
 ```
 neighbor@904d9c9a0781:~$ az storage blob service-properties show --account-name neighborhoodhoa --auth-mode login
@@ -44,23 +55,11 @@ Let's see what 📦 containers exist in the storage account
 We want to list the container and its public access levels.
 
 ```
-neighbor@904d9c9a0781:~$ az storage container list --account-name neighborhoodhoa --auth-mode login
-[
-  {
-    "name": "$web",
-    "properties": {
-      "lastModified": "2025-09-20T10:30:00Z",
-      "publicAccess": null
-    }
-  },
-  {
-    "name": "public",
-    "properties": {
-      "lastModified": "2025-09-15T14:20:00Z",
-      "publicAccess": "Blob"
-    }
-  }
-]
+neighbor@386c738b2ceb:~$  az storage container list --account-name neighborhoodhoa --auth-mode login -o table
+Name    Public
+------  --------
+$web    None
+public  Blob
 ```
 
 Examine what files are in the static website container
@@ -69,29 +68,11 @@ Look 👀 for any files that shouldn't be publicly accessible!
 
 
 ```
-neighbor@904d9c9a0781:~$ az storage blob list --account-name neighborhoodhoa --auth-mode login --container-name public
-[
-  {
-    "name": "hoa-calendar.json",
-    "properties": {
-      "contentLength": 256,
-      "contentType": "application/json",
-      "metadata": {
-        "type": "calendar"
-      }
-    }
-  },
-  {
-    "name": "forms/request-guidelines.txt",
-    "properties": {
-      "contentLength": 128,
-      "contentType": "text/plain",
-      "metadata": {
-        "type": "instructions"
-      }
-    }
-  }
-]
+neighbor@386c738b2ceb:~$ az storage blob list --account-name neighborhoodhoa --auth-mode login --container-name public -o table
+Name                          ContentLength    ContentType
+----------------------------  ---------------  ----------------
+hoa-calendar.json             256              application/json
+forms/request-guidelines.txt  128              text/plain
 ```
 
 
