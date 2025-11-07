@@ -84,13 +84,93 @@ Look 👀 for any files that shouldn't be publicly accessible!
 
 
 ```
-$ az storage blob list --account-name neighborhoodhoa --auth-mode login --container-name public -o table
-Name                          ContentLength    ContentType
-----------------------------  ---------------  ----------------
-hoa-calendar.json             256              application/json
-forms/request-guidelines.txt  128              text/plain
+$ az storage blob list --account-name neighborhoodhoa --auth-mode login --container-name '$web' -o table
+Name                  ContentLength    ContentType
+--------------------  ---------------  -------------
+index.html            512              text/html
+about.html            384              text/html
+iac/terraform.tfvars  1024             text/plain
 ```
 
+Take a look at the files here, what stands out?
+Try examining a suspect file 🕵️:
+💡 hint: --file /dev/stdout | less will print to your terminal 💻.
+
+```
+$ az storage blob download --account-name neighborhoodhoa --auth-mode login --container-name '$web' --name iac/terraform.tfvars --file /dev/stdout | less
+
+# Terraform Variables for HOA Website Deployment
+# Application: Neighborhood HOA Service Request Portal  
+# Environment: Production
+# Last Updated: 2025-09-20
+# DO NOT COMMIT TO PUBLIC REPOS
+
+# === Application Configuration ===
+app_name = "hoa-service-portal"
+app_version = "2.1.4"
+environment = "production"
+
+# === Database Configuration ===
+database_server = "sql-neighborhoodhoa.database.windows.net"
+database_name = "hoa_requests"
+database_username = "hoa_app_user"
+# Using Key Vault reference for security
+database_password_vault_ref = "@Microsoft.KeyVault(SecretUri=https://kv-neighborhoodhoa-prod.vault.azure.net/secrets/db-password/)"
+
+# === Storage Configuration for File Uploads ===
+storage_account = "neighborhoodhoa"
+uploads_container = "resident-uploads"
+documents_container = "hoa-documents"
+
+# TEMPORARY: Direct storage access for migration script
+# WARNING: Remove after data migration to new storage account
+# This SAS token provides full access - HIGHLY SENSITIVE!
+migration_sas_token = "sv=2023-11-03&ss=b&srt=co&sp=rlacwdx&se=2100-01-01T00:00:00Z&spr=https&sig=1djO1Q%2Bv0wIh7mYi3n%2F7r1d%2F9u9H%2F5%2BQxw8o2i9QMQc%3D"
+
+# === Email Service Configuration ===
+# Using Key Vault for sensitive email credentials
+sendgrid_api_key_vault_ref = "@Microsoft.KeyVault(SecretUri=https://kv-neighborhoodhoa-prod.vault.azure.net/secrets/sendgrid-key/)"
+from_email = "noreply@theneighborhood.com" 
+admin_email = "admin@theneighborhood.com"
+
+# === Application Settings ===
+session_timeout_minutes = 60
+max_file_upload_mb = 10
+allowed_file_types = ["pdf", "jpg", "jpeg", "png", "doc", "docx"]
+
+
+# === Feature Flags ===
+enable_online_payments = true
+enable_maintenance_requests = true
+enable_document_portal = false
+enable_resident_directory = true
+
+# === API Keys (Key Vault References) ===
+maps_api_key_vault_ref = "@Microsoft.KeyVault(SecretUri=https://kv-neighborhoodhoa-prod.vault.azure.net/secrets/maps-api-key/)"
+weather_api_key_vault_ref = "@Microsoft.KeyVault(SecretUri=https://kv-neighborhoodhoa-prod.vault.azure.net/secrets/weather-api-key/)"
+
+# === Notification Settings (Key Vault References) ===
+sms_service_vault_ref = "@Microsoft.KeyVault(SecretUri=https://kv-neighborhoodhoa-prod.vault.azure.net/secrets/sms-credentials/)"
+notification_webhook_vault_ref = "@Microsoft.KeyVault(SecretUri=https://kv-neighborhoodhoa-prod.vault.azure.net/secrets/slack-webhook/)"
+
+# === Deployment Configuration ===
+deploy_static_files_to_cdn = true
+cdn_profile = "hoa-cdn-prod"
+cache_duration_hours = 24
+
+# Backup schedule
+backup_frequency = "daily"
+backup_retention_days = 30
+{
+  "downloaded": true,
+  "file": "/dev/stdout"
+}
+```
+
+You found the leak! A migration_sas_token within /iac/terraform.tfvars exposed a long-lived SAS token (expires 2100-01-01) 🔑
+⚠️   Accidentally uploading config files to $web can leak secrets. 🔐
+
+Challenge Complete! To finish, type: finish
 
 
 
