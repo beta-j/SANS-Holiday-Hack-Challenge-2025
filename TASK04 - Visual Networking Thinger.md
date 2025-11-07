@@ -12,8 +12,7 @@ Difficulty: ❄️
 ## HINTS: ##
 <details>
   <summary>Hints provided for Task 4</summary>
-  >- This terminal has built-in hints!
-
+>-  This terminal has built-in hints!
 </details>
 
 #  
