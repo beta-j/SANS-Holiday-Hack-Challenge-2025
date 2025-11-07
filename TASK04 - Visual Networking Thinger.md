@@ -1,21 +1,24 @@
 # TASK 4 - Visual Networking Thinger
 Difficulty: ❄️
 
-[Direct Link](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termGiftTracking)
+[Direct Link](https://visual-networking.holidayhackchallenge.com/?&challenge=termVisnetwork)
 
 ## OBJECTIVE : ##
->Chat with Yuri near the apartment building about Santa's mysterious gift tracker and unravel the holiday mystery.
-
+>Skate over to Jared at the frozen pond for some network magic and learn the ropes by the hockey rink.
 
 #  
 
 ## HINTS: ##
 <details>
   <summary>Hints provided for Task 4</summary>
->-  This terminal has built-in hints!
-</details>
-
+  
+>-	This terminal has built-in hints!
 #  
 
 ## PROCEDURE : ##
-The term
+This one is quite easy and consists of some general revision of basic networking concepts.
+
+### Challenge 1: DNS Lookup ###
+|Client|DNS Server|
+|--|--|
+|Port: 53| Response Value: 34.160.145.134|
