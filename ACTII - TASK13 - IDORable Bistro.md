@@ -1,3 +1,24 @@
+# TASK 13 - IDORable Bistro
+Difficulty: ❄️❄️
+
+[Direct Link](https://its-idorable.holidayhackchallenge.com/receipt/i9j0k1l2)
+
+## OBJECTIVE : ##
+>Josh has a tasty IDOR treat for you—stop by Sasabune for a bite of vulnerability. What is the name of the gnome?
+
+## HINTS: ##
+<details>
+  <summary>Hints provided for Task 6</summary>
+  
+>-	**QR Codes:** I have been seeing a lot of receipts lying around with some kind of QR code on them. I am pretty sure they are for Duke Dosis's Holiday Bistro. Interesting...see you if you can find one and see what they are all about...
+>-  **Will the Real ID Please...:** Sometimes...developers put in a lot of effort to anonymyze information by using randomly generated identifiers...but...there are also times where the "real" ID is used in a separate Network request...
+>-  **Who's For Lunch?:** I had tried to scan one of the QR codes and it took me to somebody's meal receipt! I am afraid somebody could look up anyone's meal if they have the correct ID...in the correct place.
+</details>
+ 
+#  
+
+## PROCEDURE : ##
+
 find the discarded receipt just round the corner to the right form the main entrance of the Sasabune restaurant.
 Joshu Wright's Talk on IDOR: [https://www.youtube.com/watch?v=hzrhtHrhwno](https://www.youtube.com/watch?v=hzrhtHrhwno)
 
