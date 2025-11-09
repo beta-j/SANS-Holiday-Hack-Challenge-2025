@@ -8,7 +8,7 @@ Difficulty: ❄️❄️
 
 ## HINTS: ##
 <details>
-  <summary>Hints provided for Task 6</summary>
+  <summary>Hints provided for Task 13</summary>
   
 >-	**QR Codes:** I have been seeing a lot of receipts lying around with some kind of QR code on them. I am pretty sure they are for Duke Dosis's Holiday Bistro. Interesting...see you if you can find one and see what they are all about...
 >-  **Will the Real ID Please...:** Sometimes...developers put in a lot of effort to anonymyze information by using randomly generated identifiers...but...there are also times where the "real" ID is used in a separate Network request...
