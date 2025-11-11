@@ -1,8 +1,6 @@
 # TASK 11 - Retro Recovery
 Difficulty: ❄️❄️
 
-[Direct Link](https://its-idorable.holidayhackchallenge.com/receipt/i9j0k1l2)
-
 ## OBJECTIVE : ##
 >Join Mark in the retro shop. Analyze his disk image for a blast from the retro past and recover some classic treasures.
 
