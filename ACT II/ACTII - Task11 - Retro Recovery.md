@@ -22,4 +22,4 @@ Difficulty: ❄️❄️
 
 ## PROCEDURE : ##
 
-We start off this objective by speaking to Mark DeVito who is inside the Retro Emnporium.  He gives us a [floppy.img](../Asstes/floppy.img) file and asks us to see whether we can recover any data from it.  He also hints that data might be hiding in the form of a deleted file that is still on the disk.
+We start off this objective by speaking to Mark DeVito who is inside the Retro Emnporium.  He gives us a [floppy.img](../Assets/floppy.img) file and asks us to see whether we can recover any data from it.  He also hints that data might be hiding in the form of a deleted file that is still on the disk.
