@@ -165,8 +165,11 @@ $ az ad group member list --group 631ebd3f-39f9-4492-a780-aef2aec8c94e -o table
 ]
 ```
 
+🎉 Great! You discovered Firewall Frank, the👨‍💻 IT Administrator, with permanent Owner access.
+This is a security risk ⚠️ - IT staff should use 🔐 PIM (Privileged Identity Management) for
 elevated access instead of permanent assignments. Permanent Owner roles create persistent
 attack paths and violate least-privilege principles.
 
 Challenge Complete! To finish, type: finish
+
 
