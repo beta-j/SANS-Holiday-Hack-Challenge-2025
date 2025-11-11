@@ -1,7 +1,7 @@
 # TASK 12 - Mail Detective
 Difficulty: ❄️❄️
 
-[Direct Link](https://its-idorable.holidayhackchallenge.com/receipt/i9j0k1l2)
+[Direct Link](https://hhc25-wetty-prod.holidayhackchallenge.com/?&challenge=termCurlyImaps)
 
 ## OBJECTIVE : ##
 >Help Mo in City Hall solve a curly email caper and crack the IMAP case. What is the URL of the pastebin service the gnomes are using?
@@ -279,3 +279,6 @@ dosismail @ Neighborhood Mail ~$ curl -v --url "imap://localhost:143/Spam" --use
 < A004 OK Fetch completed (0.001 + 0.000 secs).
 * Connection #0 to host localhost left intact
 ```
+
+
+Answer: **https://frostbin.atnas.mail/api/paste**
