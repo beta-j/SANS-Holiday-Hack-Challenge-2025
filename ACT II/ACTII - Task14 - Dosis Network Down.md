@@ -22,6 +22,8 @@ Difficulty: ❄️❄️
 At the 24-7 shop, Janusz tells us that the gnomes have somehow managed to change the wifi router's admin password and 'probably mucked up' all its settings. 
 
 We are greeted by a login prompt asking us for a password.  The screen tells us that the Hardware version is AX21 v2.0.  If we follow the suggestion in the hint and search for "archer ax21 v2.0 uci vulnerability", the top result is a [statement issued by TP-Link](https://www.tp-link.com/us/support/faq/3643/) regarding a Remote Code execution Vulnerability **CVE-2023-1389**.  This in turn points us to this handy forum post which also includes a script for exploiting the vulnerability: https://osintteam.blog/exploring-cve-2023-1389-rce-in-tp-link-archer-ax21-d7a60f259e94
+https://www.exploit-db.com/exploits/51677
+
 
 ```
 ┌──(test㉿KaliServer1)-[~]
