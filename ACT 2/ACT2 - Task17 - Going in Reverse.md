@@ -44,3 +44,7 @@ Similarly, we can run the same `XOR 7` operation on the ASCII values of the cont
 So `DSA|auhts*wkfi=dhjwubtthut+dhhkfis+hnkz` XOR 7 gives us: `CTF{frost-plan:compressors,coolant,oil}`
 
 
+If you want a shortcut way of solving this challenge without bothering so much about the coding, you can simply use an online BASIC compiler and execute lines 30 and 85:
+
+```
+![alt text](image.png)
