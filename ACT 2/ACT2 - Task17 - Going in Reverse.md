@@ -46,8 +46,9 @@ So `DSA|auhts*wkfi=dhjwubtthut+dhhkfis+hnkz` XOR 7 gives us: `CTF{frost-plan:com
 
 If you want a shortcut way of solving this challenge without bothering so much about the coding, you can simply use an online BASIC compiler and execute lines 30 and 85:
 
-```
 
 <img width="1035" height="198" alt="image" src="https://github.com/user-attachments/assets/b746fc9e-65be-4ee0-9863-9bf39d20fb6d" />
+
+
 
 
