@@ -8,7 +8,7 @@ Difficulty: ❄️
 
 ## HINTS: ##
 <details>
-  <summary>Hints provided for Task 4</summary>
+  <summary>Hints provided for Task 5</summary>
 >-	This terminal has built-in hints!
 </details>
  

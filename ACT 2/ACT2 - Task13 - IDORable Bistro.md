@@ -14,8 +14,8 @@ Difficulty: ❄️❄️
 >-  **Will the Real ID Please...:** Sometimes...developers put in a lot of effort to anonymyze information by using randomly generated identifiers...but...there are also times where the "real" ID is used in a separate Network request...
 >-  **Who's For Lunch?:** I had tried to scan one of the QR codes and it took me to somebody's meal receipt! I am afraid somebody could look up anyone's meal if they have the correct ID...in the correct place.
 </details>
- 
-#  
+
+#
 
 ## PROCEDURE : ##
 

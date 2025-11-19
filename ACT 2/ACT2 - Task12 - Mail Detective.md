@@ -50,7 +50,7 @@ of that pastebin service in your badge.
 ```
 
 
-```
+```bash
 dosismail @ Neighborhood Mail ~$ curl -v --url "imap://localhost:143/" --user 'dosismail:holidaymagic'
 *   Trying 127.0.0.1:143...
 * Connected to localhost (127.0.0.1) port 143 (#0)
@@ -77,7 +77,7 @@ dosismail @ Neighborhood Mail ~$ curl -v --url "imap://localhost:143/" --user 'd
 ```
 
 
-```
+```bash
 dosismail @ Neighborhood Mail ~$ curl -v --url "imap://localhost:143/Spam" --user 'dosismail:holidaymagic' -X 'FETCH 1:* (BODY.PEEK[TEXT])'                
 *   Trying 127.0.0.1:143...
 * Connected to localhost (127.0.0.1) port 143 (#0)
