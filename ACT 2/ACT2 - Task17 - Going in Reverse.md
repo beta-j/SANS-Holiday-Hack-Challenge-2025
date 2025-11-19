@@ -48,4 +48,6 @@ If you want a shortcut way of solving this challenge without bothering so much a
 
 ```
 
-<img width="1040" height="233" alt="image" src="https://github.com/user-attachments/assets/90cbd8a5-460c-479e-a832-04c8d0306d45" />
+<img width="1035" height="198" alt="image" src="https://github.com/user-attachments/assets/b746fc9e-65be-4ee0-9863-9bf39d20fb6d" />
+
+
