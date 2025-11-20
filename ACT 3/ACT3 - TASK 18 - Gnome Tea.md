@@ -23,6 +23,22 @@ Difficulty: ❄️❄️❄️
 
 ## PROCEDURE : ##
 
-find the
+We are presented with a login screen and not much more information.  After hours and hours of looking through the code, GToogling and chatting with ChatGPT, I was able to find the following:
+
+```
+const OP = {
+    apiKey: "AIzaSyDvBE5-77eZO8T18EiJ_MwGAYo5j2bqhbk",
+    authDomain: "holidayhack2025.firebaseapp.com",
+    projectId: "holidayhack2025",
+    storageBucket: "holidayhack2025.firebasestorage.app",
+    messagingSenderId: "341227752777",
+    appId: "1:341227752777:web:7b9017d3d2d83ccf481e98"
+}
+```
+
+This part of the code tells us that the Firebase storage bucket used by the app is called `holidayhack2025.firebasestorage.app` and we can use this simple bit of information to check whether their database is exposed to the internet and dump its contents if it is.  We do this by calling `curl "https://firebasestorage.googleapis.com/v0/b/<BUCKET NAME>/o/`.  note that the `/o` at the enmd of the URI is included to list the objects within the bucket.
+
+This gives us a nice list of image files contained under two directories; `gnome-avatars` and `gnome-documents`.  I used a simple bash script to dom#wnload all of these
+
 
 useful  [https://isc.sans.edu/diary/32158](https://isc.sans.edu/diary/32158)
