@@ -38,8 +38,7 @@ const OP = {
 
 This part of the code tells us that the Firebase storage bucket used by the app is called `holidayhack2025.firebasestorage.app` and we can use this simple bit of information to check whether their database is exposed to the internet and dump its contents if it is.  We do this by calling `curl "https://firebasestorage.googleapis.com/v0/b/<BUCKET NAME>/o/`.  note that the `/o` at the enmd of the URI is included to list the objects within the bucket.
 
-This gives us a nice list of image files contained under two directories; `gnome-avatars` and `gnome-documents`.  I used a [simple bash script](Code/firebasedownloader.sh) to download all of these files.
-
+This gives us a nice list of image files contained under two directories; `gnome-avatars` and `gnome-documents`.  
 ```
 └─$ curl "https://firebasestorage.googleapis.com/v0/b/holidayhack2025.firebasestorage.app/o/"
 
@@ -53,145 +52,11 @@ This gives us a nice list of image files contained under two directories; `gnome
     {
       "name": "gnome-avatars/6nBUHcdxo2fLKSYqYyipr9iCOey2_profile.png",
       "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/7sQlw9l4xUOWSjDTphvLgKVEm0j1_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/G5c0vX06WOaEf1YKutqkur4HEU63_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/IvLFBZQgo3R6iteLHmShbWmctqo2_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/LA5w0EskgSbQyFnlp9OrX8Zovu43_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/LOPFa6rXj6eB7uMVHu6IbKARYbe2_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/PyxedrsAN2bewsg4Rno9SsCqZHg2_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/RQw0hYxlKIhsTUVPyR8ivrM3ls02_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/VgJCVlELJ6VfQTxeIt1dR5PWyiX2_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/golJeh7xg9YUvcj5nDugTssQPy62_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/jlm1nPFV5xWM4jQaokLHDb6K8kj1_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/kmoZyOIt7sWgehQC8ovcsxXPWUS2_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/l7VS01K9GKV5ir5S8suDcwOFEpp2_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/prxA2hBSkhg3dkhkfzvnlGxCCfP2_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/pwbhMFuRbkesddTrtT3gVRzv8Ux1_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/q6GasKLVBYSo3g4c1mI6qXDpRmv2_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-avatars/xK25sJX7usSwAJwAjpN8DMfzS872_profile.png",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/6J2bowmKiNVbITWmR4XsxjH7i492_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/6nBUHcdxo2fLKSYqYyipr9iCOey2_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/7sQlw9l4xUOWSjDTphvLgKVEm0j1_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/G5c0vX06WOaEf1YKutqkur4HEU63_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/IvLFBZQgo3R6iteLHmShbWmctqo2_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/LA5w0EskgSbQyFnlp9OrX8Zovu43_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/LOPFa6rXj6eB7uMVHu6IbKARYbe2_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/PyxedrsAN2bewsg4Rno9SsCqZHg2_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/RQw0hYxlKIhsTUVPyR8ivrM3ls02_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/VgJCVlELJ6VfQTxeIt1dR5PWyiX2_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/golJeh7xg9YUvcj5nDugTssQPy62_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/jlm1nPFV5xWM4jQaokLHDb6K8kj1_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/kmoZyOIt7sWgehQC8ovcsxXPWUS2_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/l7VS01K9GKV5ir5S8suDcwOFEpp2_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/prxA2hBSkhg3dkhkfzvnlGxCCfP2_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/pwbhMFuRbkesddTrtT3gVRzv8Ux1_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/q6GasKLVBYSo3g4c1mI6qXDpRmv2_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    },
-    {
-      "name": "gnome-documents/xK25sJX7usSwAJwAjpN8DMfzS872_drivers_license.jpeg",
-      "bucket": "holidayhack2025.firebasestorage.app"
-    }
-  ]
+...
+...
+...
 ```
-
+I used a [simple bash script](Code/firebasedownloader.sh) to download all of these files.
+<img width="1039" height="787" alt="image" src="https://github.com/user-attachments/assets/5066961a-78a3-4ac3-8b00-5bf2c53ba329" />
 
 useful  [https://isc.sans.edu/diary/32158](https://isc.sans.edu/diary/32158)
