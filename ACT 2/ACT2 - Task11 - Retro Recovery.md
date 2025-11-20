@@ -31,7 +31,7 @@ This returned a number of BASIC code snippets starting at Unit 38 of the disk:
 <img width="1323" height="384" alt="image" src="https://github.com/user-attachments/assets/bc32a4b0-a49b-407c-ab99-4d3c98dd2ee5" />
 
 So I then looked at data units 38 to 97 to have a look at the [full code](/Assets/superstartrek.bas).  It looks like a file called `superstartrek.bas` with the code for a QBASIC game (just as expected).  
-<img width="1323" height="384" alt="image" src="https://github.com/user-attachments/assets/e9249ad5-d1dc-47c6-b788-b350b26c859d" />
+<img width="1017" height="651" alt="image" src="https://github.com/user-attachments/assets/c84a12fe-4e66-4172-a8c5-f818b79dc536" />
 
 After skimmign through the code a number of times, nothing stood out in particular, so I pasted the whole thign to [ChatGPT](https://chatgpt.com) and asked it whether it could notice anythign strange about the code.  Sure enough, just a second later, it had spotted a BASE64 encoded string on code line `211` and vewry conveniently decoded it for me too!
 
