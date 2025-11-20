@@ -56,7 +56,7 @@ This gives us a nice list of image files contained under two directories; `gnome
 ...
 ...
 ```
-I used a [simple bash script](Code/firebasedownloader.sh) to download all of these files.
+I used a [simple bash script](../Code/firebasedownloader.sh) to download all of these files.
 <img width="1039" height="787" alt="image" src="https://github.com/user-attachments/assets/5066961a-78a3-4ac3-8b00-5bf2c53ba329" />
 
 useful  [https://isc.sans.edu/diary/32158](https://isc.sans.edu/diary/32158)
