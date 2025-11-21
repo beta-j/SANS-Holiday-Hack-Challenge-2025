@@ -57,6 +57,7 @@ This gives us a nice list of image files contained under two directories; `gnome
 ...
 ```
 I used a [simple bash script](../Code/firebasedownloader.sh) to download all of these files.
+
 <img width="520" height="394" alt="image" src="https://github.com/user-attachments/assets/5066961a-78a3-4ac3-8b00-5bf2c53ba329" />
 
 This gave me a cache of gnome avatars and images of their driving licenses.  Going off one of the hints to this task, I ran `exif-tool` on all the images and outputed the results to a text file so that I could have a better look.
@@ -83,3 +84,18 @@ Unfortunately attempting to log in with this password doesn't work.  So we need 
 This time, searching for `barnaby` in the `dms` collection brings up a conversation he had with Glitch Mitnick, where he tells him that his password  "is actually the name of [his]] hometown that [he] grew up in" and that he "just visited there back when [he] signed up with [his] id to GnomeTea".  Just to drive the poitn home, he also says that he "took [his] picture of [his] id there".  
 
 So now we can try logging in with the email `barnabybriefcase@gnomemail.dosis` and the password `gnomesville` .... and we're in! 
+
+<img width="1462" height="716" alt="image" src="https://github.com/user-attachments/assets/45328791-4858-4b50-8cec-c1c6cb5a6a67" />
+
+
+OK - now to gain admin access...So - let's try lookign around for a possible admin panel... my first guess would be to try visitng `/admin` at `https://gnometea.web.app/admin`, and sure enough it looks liek the portal exists and we get an extremely handy error message tellign us that we're not allowed to access it and why!
+
+<img width="1006" height="329" alt="image" src="https://github.com/user-attachments/assets/400b13c2-68f0-400c-8f4c-32b686bf9b4c" />
+
+The next step is quite clear now,  we simply need to bring up the console in developer mode and set the variable `window.ADMIN_UID = "3loaihgxP0VwCTKmkHHFLe6FZ4m2";` and as soon as we hit enter, we are greeted with the Admin portal, which includes the details of some classified operations and the passphrase that agents are to use when meeting fellow operatives! :)
+
+<img width="598" height="420" alt="image" src="https://github.com/user-attachments/assets/4b44c66c-5b2e-4f8c-9e23-25c55f883bf6" />
+
+
+
+
