@@ -57,7 +57,7 @@ This gives us a nice list of image files contained under two directories; `gnome
 ...
 ```
 I used a [simple bash script](../Code/firebasedownloader.sh) to download all of these files.
-<img width="1039" height="787" alt="image" src="https://github.com/user-attachments/assets/5066961a-78a3-4ac3-8b00-5bf2c53ba329" />
+<img width="520" height="394" alt="image" src="https://github.com/user-attachments/assets/5066961a-78a3-4ac3-8b00-5bf2c53ba329" />
 
 This gave me a cache of gnome avatars and images of their driving licenses.  Going off one of the hints to this task, I ran `exif-tool` on all the images and outputed the results to a text file so that I could have a better look.
 One of the drivers' licenses stood out as it was the only one to include the GPS Position in its exif data.  The driver license belogns to BARNARBY BRIEFCASE and the GPS coordinates point to a place called [Gnomesville on Google Maps](https://maps.app.goo.gl/azx2kJ3SNYShQXJi8).  OK - so what am I supposed to do with this information now?
