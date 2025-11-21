@@ -60,7 +60,7 @@ I used a [simple bash script](../Code/firebasedownloader.sh) to download all of 
 <img width="1039" height="787" alt="image" src="https://github.com/user-attachments/assets/5066961a-78a3-4ac3-8b00-5bf2c53ba329" />
 
 This gave me a cache of gnome avatars and images of their driving licenses.  Going off one of the hints to this task, I ran `exif-tool` on all the images and outputed the results to a text file so that I could have a better look.
-One of the drivers' licenses stood out as it was the only one to include the GPS Position in its exif data.  The driver license belogns to BARNARBY BRIEFCASE and the GPS coordinates point to a place called [Gnomesville on Google Maps](https://maps.app.goo.gl/azx2kJ3SNYShQXJi8).  OK - so what am I supposed to dfo with this information now?
+One of the drivers' licenses stood out as it was the only one to include the GPS Position in its exif data.  The driver license belogns to BARNARBY BRIEFCASE and the GPS coordinates point to a place called [Gnomesville on Google Maps](https://maps.app.goo.gl/azx2kJ3SNYShQXJi8).  OK - so what am I supposed to do with this information now?
 
 Well, taking another look at the html code of the `login` page, there is an interesting comment included:
 ``<!-- TODO: lock down dms, tea, gnomes collections -->``
@@ -78,4 +78,8 @@ Searching for `barnaby` in the `tea` collection, we learn that he wrote his pass
           "stringValue": "😂 I heard Barnaby Briefcase is SO forgetful, he wrote his password on a sticky note and left it at the garden club! It was \"MakeRColdOutside123!\" - like, seriously Barnaby? That's your password? 🤦\u200d♂️"
 ```
 
-Unfortunately attempting to log in with this password doesn't work.  
+Unfortunately attempting to log in with this password doesn't work.  So we need to dig a little further.
+
+This time, searching for `barnaby` in the `dms` collection brings up a conversation he had with Glitch Mitnick, where he tells him that his password  "is actually the name of [his]] hometown that [he] grew up in" and that he "just visited there back when [he] signed up with [his] id to GnomeTea".  Just to drive the poitn home, he also says that he "took [his] picture of [his] id there".  
+
+Looking back at the location of Gnomesville in Google Maps we can see that it is located in a town called Wellington Mills.
