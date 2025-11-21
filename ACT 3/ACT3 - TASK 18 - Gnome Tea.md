@@ -85,12 +85,12 @@ This time, searching for `barnaby` in the `dms` collection brings up a conversat
 
 So now we can try logging in with the email `barnabybriefcase@gnomemail.dosis` and the password `gnomesville` .... and we're in! 
 
-<img width="1462" height="716" alt="image" src="https://github.com/user-attachments/assets/45328791-4858-4b50-8cec-c1c6cb5a6a67" />
+<img width="730" height="357" alt="image" src="https://github.com/user-attachments/assets/45328791-4858-4b50-8cec-c1c6cb5a6a67" />
 
 
 OK - now to gain admin access...So - let's try lookign around for a possible admin panel... my first guess would be to try visitng `/admin` at `https://gnometea.web.app/admin`, and sure enough it looks liek the portal exists and we get an extremely handy error message tellign us that we're not allowed to access it and why!
 
-<img width="1006" height="329" alt="image" src="https://github.com/user-attachments/assets/400b13c2-68f0-400c-8f4c-32b686bf9b4c" />
+<img width="503" height="165" alt="image" src="https://github.com/user-attachments/assets/400b13c2-68f0-400c-8f4c-32b686bf9b4c" />
 
 The next step is quite clear now,  we simply need to bring up the console in developer mode and set the variable `window.ADMIN_UID = "3loaihgxP0VwCTKmkHHFLe6FZ4m2";` and as soon as we hit enter, we are greeted with the Admin portal, which includes the details of some classified operations and the passphrase that agents are to use when meeting fellow operatives! :)
 
