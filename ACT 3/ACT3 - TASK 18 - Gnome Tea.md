@@ -10,7 +10,7 @@ Difficulty: ❄️❄️❄️
 
 ## HINTS: ##
 <details>
-  <summary>Hints provided for Task 13</summary>
+  <summary>Hints provided for Task 18</summary>
   
 >-	**GnomeTea:** I heard rumors that the new GnomeTea app is where all the Gnomes spill the tea on each other. It uses Firebase which means there is a client side config the app uses to connect to all the firebase services.
 >-  **Statically Coded:** Hopefully they did not rely on hard-coded client-side controls to validate admin access once a user validly logs in. If so, it might be pretty easy to change some variable in the developer console to bypass these controls.
