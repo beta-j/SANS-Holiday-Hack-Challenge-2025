@@ -82,4 +82,4 @@ Unfortunately attempting to log in with this password doesn't work.  So we need 
 
 This time, searching for `barnaby` in the `dms` collection brings up a conversation he had with Glitch Mitnick, where he tells him that his password  "is actually the name of [his]] hometown that [he] grew up in" and that he "just visited there back when [he] signed up with [his] id to GnomeTea".  Just to drive the poitn home, he also says that he "took [his] picture of [his] id there".  
 
-Looking back at the location of Gnomesville in Google Maps we can see that it is located in a town called Wellington Mills.
+So now we can try logging in with the email `barnabybriefcase@gnomemail.dosis` and the password `gnomesville` .... and we're in! 
