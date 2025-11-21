@@ -59,4 +59,23 @@ This gives us a nice list of image files contained under two directories; `gnome
 I used a [simple bash script](../Code/firebasedownloader.sh) to download all of these files.
 <img width="1039" height="787" alt="image" src="https://github.com/user-attachments/assets/5066961a-78a3-4ac3-8b00-5bf2c53ba329" />
 
-useful  [https://isc.sans.edu/diary/32158](https://isc.sans.edu/diary/32158)
+This gave me a cache of gnome avatars and images of their driving licenses.  Going off one of the hints to this task, I ran `exif-tool` on all the images and outputed the results to a text file so that I could have a better look.
+One of the drivers' licenses stood out as it was the only one to include the GPS Position in its exif data.  The driver license belogns to BARNARBY BRIEFCASE and the GPS coordinates point to a place called [Gnomesville on Google Maps](https://maps.app.goo.gl/azx2kJ3SNYShQXJi8).  OK - so what am I supposed to dfo with this information now?
+
+Well, taking another look at the html code of the `login` page, there is an interesting comment included:
+``<!-- TODO: lock down dms, tea, gnomes collections -->``
+This is a fantastic hint since it tells us that the names of some interesting collections, i.e. `dms`, `tea` and `gnomes`.  Once again ChatGPT came in handy here to help me find the correct way of accessing these collections, but in the end I figured out that the contents fo these collections can be viewed by simply calling the following URLs in a browser or using `curl`:
+
+[https://firestore.googleapis.com/v1/projects/holidayhack2025/databases/(default)/documents/tea](https://firestore.googleapis.com/v1/projects/holidayhack2025/databases/(default)/documents/tea)
+[https://firestore.googleapis.com/v1/projects/holidayhack2025/databases/(default)/documents/gnomes](https://firestore.googleapis.com/v1/projects/holidayhack2025/databases/(default)/documents/gnomes)
+[https://firestore.googleapis.com/v1/projects/holidayhack2025/databases/(default)/documents/dms](https://firestore.googleapis.com/v1/projects/holidayhack2025/databases/(default)/documents/dms)
+
+
+Searching for `barnaby` in the `gnomes` collection, we find some more information related to his profile, in particular we now know that his email address is `barnabybriefcase@gnomemail.dosis` and that enjoys gossipping.  
+
+Searching for `barnaby` in the `tea` collection, we learn that he wrote his password down on a sticky note and we also learn what it was!
+```
+          "stringValue": "😂 I heard Barnaby Briefcase is SO forgetful, he wrote his password on a sticky note and left it at the garden club! It was \"MakeRColdOutside123!\" - like, seriously Barnaby? That's your password? 🤦\u200d♂️"
+```
+
+Unfortunately attempting to log in with this password doesn't work.  
