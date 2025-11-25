@@ -1,15 +1,15 @@
 import requests
 
 URL = "https://hhc25-smartgnomehack-prod.holidayhackchallenge.com/userAvailable?username="
-wordlist = [
-    "john", "jane", "paul", "anna", "ben",
-    "thomas", "mary", "michael", "lisa",
-    "david", "joe", "alex", "chris" , "henriette", "andersen", "robin", "ben", "jesse"
-]
+
+with open("englishnames.txt","r") as f:
+    wordlist = [line.strip() for line in f if line.strip()]
+
+print(f"Loaded {len(wordlist)} names from englishnames.txt")
 
 for name in wordlist:
     try:
-        r = requests.get(URL + name, timeout=5)
+        r = requests.get(URL + name, timeout=3)
         text = r.text.lower()
 
         if "syntax error" in text or "sc1012" in text:
