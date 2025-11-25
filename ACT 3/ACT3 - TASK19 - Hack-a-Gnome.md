@@ -31,5 +31,9 @@ Difficulty: ❄️❄️❄️
 
 ## PROCEDURE : ##
 
+URI: https://hhc25-smartgnomehack-prod.holidayhackchallenge.com/login?&challenge=termSmartGnome&username=betaj&id=8fd9bfc1-4c4d-446d-bfda-2169f3b46a80&area=gnomefactory&location=6,17&tokens=&dna=ATATATTAATATATATATATATATATATATATCGATTACGATATATATATATTAATATATATATATATTAGCATATCGATATATATATATATTAGCATATATATATATGCGCATATTAGC
+
 If the sheer number of hints for this objective is anything to go by, it's going to be a challenging one!
+
+test
 
