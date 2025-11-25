@@ -9,7 +9,7 @@ print(f"Loaded {len(wordlist)} names from englishnames.txt")
 
 for name in wordlist:
     try:
-        r = requests.get(URL + name, timeout=3)
+        r = requests.get(URL + name, timeout=10)
         text = r.text.lower()
 
         if "syntax error" in text or "sc1012" in text:
