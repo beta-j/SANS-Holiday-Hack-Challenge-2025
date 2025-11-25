@@ -35,5 +35,8 @@ URI: https://hhc25-smartgnomehack-prod.holidayhackchallenge.com/login?&challenge
 
 If the sheer number of hints for this objective is anything to go by, it's going to be a challenging one!
 
-test
+If we head to the link we're given we are presented with a login screen to access Smart Gnome Control.  There's nothing else to play around with on this screen, apart from a link that says __Register__. This link takes us to a page where we can create a new user and password although we're told that _"Registration is currently closed"_.  There is still somethign that might be useful to us here though...  if we try to enter a username the app checks in realtime to see whetehr the username is taken and lets us know.  So we have a way of querying the database for existing user accounts.
+
+After some playign around with this screen, I found out that typing `"` in the username field triggers an error:
+
 
