@@ -51,9 +51,10 @@ Using Burp Suite's intruder function, we can see that whenever we try a username
 
 Next I looked for a list of common english names and I downloaded the one found [here](https://github.com/KarlAmort/firstname-database).  I was then able to filter out those names that were English and created a list called [englishnames.txt](/Code/englishnames.txt), which I used together with a [python script](/Code/userenum.py) to try different usernames until I got a reply that said `{"available":false}` which indicates that the username in question exists and is in use.
 
-After waiting for the script to do its thing, I landed ont eh username `bruce`.
+After waiting for the script to do its thing, I landed on the usernames `bruce` and `harold`.
 
 
 <img width="349" height="200" alt="image" src="https://github.com/user-attachments/assets/f11ee693-dd51-4478-a3a5-a181b9e1ea00" />
+
 
 
