@@ -76,6 +76,7 @@ We can also use `SUBSTRING` to check for specific characters in a known field, f
 
 We can use the same technique to determine the value od id for username `harold` or `bruce` with the following input:  `harold" AND SUBSTRING(c.id,0,1)="0" --` and trying different values in the quotes until it returns **TRUE** (i.e. _"Username is Taken"_).  Using this method we can quickly determine that the value of `id` for harold is `1` and for `bruce` it is `2`.
 
+Next we can check whether specific values for `id` exist across the entire database by using the query `" OR SUBSTRING(c.id,0,1)='0' --`, `" OR SUBSTRING(c.id,0,1)='' --`, etc...
 
 
 
