@@ -57,4 +57,26 @@ After waiting for the script to do its thing, I landed on the usernames `bruce` 
 <img width="349" height="200" alt="image" src="https://github.com/user-attachments/assets/f11ee693-dd51-4478-a3a5-a181b9e1ea00" />
 
 
+The error we got earlier when inputting a `"` as a username, suggests that the site might be vulverable to some kind of code injection.  Given that the website seems to be using Cosmos DB, we are most likely looking at NoSQLi.  Let's try out some quick tests by entring the following strings in the username field:
+
+  - `bruce` returns _Usernamne is taken_  (i.e. **TRUE**)
+  - `bruce" OR 1 --` returns _Usernamne is taken_  (i.e. **TRUE**)
+  - `bruce" AND 1 --` returns _Usernamne is available_  (i.e. **FALSE**)
+  - `bruce" OR c.username="harold" --` returns _Username is taken_ (i.e. **TRUE**)
+
+Looks like we can try some blind NoSQLi logic tests here.
+
+We can use `IS_DEFINED` to find out if a field exists in the database:  
+  - `bruce" AND IS_DEFINED(c.username) --` returns **TRUE**, so we know that the database contains a field called `username` (well we already knew that - but this confirms that we can potentially use NoSQLi to find database field names).
+  - `bruce" AND IS_DEFINED(c.id) --` also returns **TRUE**, so we know that the database contains a field called `id`.
+  - `bruce" AND IS_DEFINED(c.password) --` returns **FALSE**, so apparently there is no field named `password`.
+
+We can also use `SUBSTRING` to check for specific characters in a known field, for example:
+`harold" AND SUBSTRING(c.username,0,1)="h" --` returns **TRUE** because `h` is the first character in the `username` field for user `harold`.
+
+We can use the same technique to determine the value od id for username `harold` or `bruce` with the following input:  `harold" AND SUBSTRING(c.id,0,1)="0" --` and trying different values in the quotes until it returns **TRUE** (i.e. _"Username is Taken"_).  Using this method we can quickly determine that the value of `id` for harold is `1` and for `bruce` it is `2`.
+
+
+
+
 
