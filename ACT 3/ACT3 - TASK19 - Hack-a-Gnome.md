@@ -75,10 +75,20 @@ We can use the same technique to determine the value od id for username `harold`
 
 So far it looks like there are only two registered users on the system and the hints lead us to understand that there should be a field containing their password hashes, so we need to try and guess the name of this field.  This part took me a while and I tried all sorts of combinations of `password`, `pwd`, `pw`, `pwdhash`, `pwhash`, etc...  until I finally tried `digest` and sure enough `https://hhc25-smartgnomehack-prod.holidayhackchallenge.com/userAvailable?username=%22%20OR%20IS_DEFINED(c.digest)%20--` returns `{"available":false}` thus confirming that the field exists, and its name indicates that it most likely contains MD5 hashes.
 
-I put together [a python script]()
+I put together [a python script](Code/digest-extractor.py) that uses the SUBSTRING function to reveal the hash for each user character by character.  This finally gave me the following hashes:
+
+id|username|digest
+--|--|--
+1|harold|07f456ae6a94cb68d740df548847f459
+2|bruce|d0a9ba00f80cbc56584ef245ffc56b9e
+
+I then fed these hashes to [https://crackstation.net/](https://crackstation.net/), which compares the hashes to those of known password/hash pairs.  This revealed the following passwords for the two users:
 
 
-
+id|username|digest|password
+--|--|--|--
+1|harold|07f456ae6a94cb68d740df548847f459|oatmeal!!
+2|bruce|d0a9ba00f80cbc56584ef245ffc56b9e|oatmeal12
 
 
 
