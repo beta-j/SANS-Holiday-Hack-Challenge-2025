@@ -33,7 +33,7 @@ LISTEN                      0                           5                       
 
 From this we can see that there is an application listening on port `12321` which is an unusual port, and given that it's the only application on the list, it's safe to assume that this is the Santa-Tracking Service we're looking for.
 
-Assumign that this is a web application (especially since it originally used port 8080) we can connect to it using `curl`:
+Assuming that this is a web application (especially since it originally used port 8080) we can connect to it using `curl`:
 
 ```
 🎄 tinkerer @ Santa Tracker ~ 🎅 $ curl localhost:12321
