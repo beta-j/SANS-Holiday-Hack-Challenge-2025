@@ -32,7 +32,8 @@ URLS: `https://[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+(:[0-9]+)?(/[^\s]*)?`
 
 Email Addresses: `\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b`
 
-Make sure to remove any domains and email addresses related to dosisneighborhood.corp as these are not malicious.
+
+Make sure to remove any domains and email addresses related to `dosisneighborhood.corp` as these are not malicious.
 
 
 Finally use the following sed to fully defang all of the IoCs: `s/\./[.]/g; s/@/[@]/g; s/http/hxxp/g; s/:\//[://]/g`
