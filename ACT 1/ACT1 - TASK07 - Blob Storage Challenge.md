@@ -47,7 +47,7 @@ Try: `az storage account list | less`
 For more information:
 [https://learn.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest](https://learn.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest)
 
-Running th esuggested command we can see that one of the returned accounts has `"allowBlobPublicAccess":true`
+Running the suggested command we can see that one of the returned accounts has `"allowBlobPublicAccess":true`
 
 ```
 $ az storage account list | less
@@ -80,7 +80,7 @@ $ az storage account list | less
   },
 ```
 
-hmm... one of these looks suspicious 🚨, i think there may be a misconfiguration here somewhere.
+hmm... one of these looks suspicious 🚨, I think there may be a misconfiguration here somewhere.
 Try showing the account that has a common misconfiguration: az storage account show --name xxxxxxxxxx | less
 
 ```
