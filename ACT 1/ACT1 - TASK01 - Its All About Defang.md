@@ -23,6 +23,7 @@ Difficulty: ❄️
 
 ## PROCEDURE : ##
 Here are the regex patterns I used:
+
 Domains:  `[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+`
 
 IP Addresses: `\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}`
